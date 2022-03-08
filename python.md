@@ -23,6 +23,27 @@ class StageTest(unittest.TestCase):
 
         # Assert
         self.assertEqual(result, "hello-world")
+
+    def test_multiple(self):
+        # Define
+        allowed_error = 0.001
+        subtests = [
+            # infow temp F, expected result
+            (50, 253.5),
+            (100, 503.5),
+            (150, 753.5),
+            (200, 1003.5),
+        ]
+
+        # Process
+        calculated_value = {}
+        for temp_f, _ in subtests:
+            calculated_value[temp_f] = calculate_result(temp_f)
+
+        # Assert
+        for temp_f, expected_value in subtests:
+            with self.subTest(temp_f = temp_inflow_f):
+                self.assertAlmostEqual(calculated_value[temp_f], expected_value, delta = allowed_error)
 ```
 
 
