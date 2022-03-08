@@ -34,6 +34,55 @@ flowchart LR;
     click B href "http://www.github.com" "This is a tooltip for a link"
 ```
 
+### Pseudo-Fishbone
+```mermaid
+flowchart LR
+
+    %% EXPERIENCES %
+    subgraph Experience
+        unable_to_connect
+        slow_response
+        invalid_results
+        not_receiving_data
+    end
+    subgraph Issue
+        not_starting --> unable_to_connect
+        internet_loss --> unable_to_connect
+        weak_connection --> slow_response
+        not_paired --> unable_to_connect
+        not_paired --> not_receiving_data
+    end
+
+
+    %% FAILURE AREA %%
+    subgraph SIM
+        deactivated --> internet_loss
+        data_used_up --> internet_loss
+        out_of_range --> weak_connection
+    end
+    subgraph Router 
+        invalid_sim_config --> internet_loss
+        https_enabled --> internet_loss
+        invalid_dhcp_config --> internet_loss
+        wrong_power_adapter --> not_starting
+    end
+    subgraph Computer
+        turned_off --> not_starting & not_receiving_data
+        overheated --> not_starting
+    end
+    subgraph Edge Management
+        invalid_config --> not_starting
+        invalid_config --> not_paired
+        wrong_version --> not_paired
+    end
+    subgraph aurora
+        invalid_config2 --> not_paired
+        warn_sensor --> invalid_results
+        no_power --> invalid_results
+    end
+
+```
+
 ### Gantt
 ```mermaid
 gantt
