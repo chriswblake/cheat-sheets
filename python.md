@@ -1,4 +1,32 @@
 
+## Testing
+```python
+# Basic Modules
+import unittest
+
+# Pip Modules
+
+# Project modules
+
+class StageTest(unittest.TestCase):
+    def setUp(self):
+        self.template_thing = "hello world"
+    def tearDown(self):
+        del self.template_thing
+
+    def test_my_method(self):
+        # Define
+        my_input = self.template_thing
+
+        # Process
+        result = my_method(my_input)
+
+        # Assert
+        self.assertEqual(result, "hello-world")
+```
+
+
+
 ## Typing
 ```python
 # Dictionary
