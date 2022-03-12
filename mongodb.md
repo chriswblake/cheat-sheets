@@ -111,8 +111,62 @@ mongoimport --uri "<Atlas Cluster URI>" --drop=<filename>.json
 
 ## MongoDB - Web Collection Browser
 
-### Filter (Search)
+### Query (operators)
 ```json
-# Simple exact search
+// Simple exact search
 {"state": "NY", "city": "ALBANY"}
+
+// Less than or equal
+{"seconds": {"$lte": 60} }
+
+// Not equal
+{"field_name": {"$ne": "value"} }
+
+// Equal (default if ommitted)
+{"field_name": {"$eq": "value"} }
+{"field_name": "value" }
+
+// Simple and search
+{"state": "NY", "pop": {"$lte": 1000}}
+{"state": "NY", "pop": {"$gte": 1000, "$lte":1050}}
+
+// Logic Operators
+{"$or": [{"state": "NY"}, {"state": "AL"}]}
+{"$nor": [{"state": "NY"}, {"state": "AL"}]}
+{"$and": [ {"state": "NY"}, {"pop": {"$lte":1000}} ]}
+{"state": {"$not": {"$eq": "NY"}}}
+
+// Example 1
+{"$and":[
+  {"$or":[
+    {"dst_airport": "KZN"},
+    {"src_airport": "KZN" }
+  ]},
+  {"$or":[
+      {"airplane": "CR2" },
+      {"airplane": "A81" }
+  ]}
+]}
+
+// Example 2
+{"$or":[
+  {"founded_year": 2004, "$or":[{"category_code":"social"}, {"category_code":"web"}]},
+  {"founded_month": 10, "$or":[{"category_code":"social"}, {"category_code":"web"}]}
+]}
+```
+
+### Query (using expressions)
+```json
+
+// Two fields have the same value
+{ "$expr": { "$eq": [ "$end station id", "$start station id"] } }
+
+// Combined comparisons
+{ "$expr": { 
+    "$and": [
+      {"$eq": [ "$end station id", "$start station id"]},
+      {"$lte": ["$tripduration", 1000]}
+    ]
+  }
+}
 ```
