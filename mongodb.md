@@ -70,6 +70,10 @@ db.<collection>.updateOne({ "search_field": "search_value"}, { "$push": { "my_ar
 
 ### Delete
 ```bash
+
+# Field
+db.<collection>.updateMany({ "search_field": "search_value" }, { "$unset": {"field1": ""} })
+
 # Document(s)
 db.inspections.deleteOne({ "search_field": "search_value" })
 db.inspections.deleteMany({ "search_field": 1 })
