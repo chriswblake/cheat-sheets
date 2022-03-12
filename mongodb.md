@@ -31,6 +31,15 @@ db.<collection name>.find({"field1":"value1", "field2":"value2"}).pretty()
 # Get just one doc
 db.<collection name>.findOne({})
 
+# Sub documents
+db.<collection_name>.find({"rootdoc_field.subdoc_field":"search_value"})
+db.companies.find({ "relationships.0.person.last_name": "blake" })
+
+# Regex
+db.companies.find({ "relationships.0.person.first_name": "Mark", "relationships.0.title": { "$regex": "CEO" } })
+> More about [Regex](https://docs.mongodb.com/manual/reference/operator/query/regex/)
+```
+
 ### Query + Projection
 ```bash
 # Show only some fields in results (1-show, 0-hide)
@@ -154,6 +163,12 @@ mongoimport --uri "<Atlas Cluster URI>" --drop=<filename>.json
 {"$nor": [{"state": "NY"}, {"state": "AL"}]}
 {"$and": [ {"state": "NY"}, {"pop": {"$lte":1000}} ]}
 {"state": {"$not": {"$eq": "NY"}}}
+
+// Arrays
+{"amenities": "Wifi"} // The array includes 'Wifi'.
+{"amenities": {"$all": ["Wifi", "Kitchen"]}} // The array includes both
+{"amenities": {"$size": 20}}
+{"amenities": {"$size": 20, "$all": ["Wifi"]}}
 
 // Example 1
 {"$and":[
