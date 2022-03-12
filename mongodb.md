@@ -29,7 +29,25 @@ show collections
 db.<collection name>.find({"field1":"value1", "field2":"value2"}).pretty()
 
 # Get just one doc
-db.<collection name>.findOne();
+
+### Query + Projection
+```bash
+# Show only some fields in results (1-show, 0-hide)
+db.<collection name>.find(
+  {"first_name":"John", "family_name":"smith"},
+  {"address":1, "age":1}
+).pretty()
+
+# Arrays - Show only values of an array
+db.grades.find(
+  { "class_id": 431 },
+  { "scores": { "$elemMatch": { "score": { "$gt": 85 } } }
+}).pretty()
+
+# Arrays - Show documents wher element in array meets criteria
+db.grades.find({ "scores": { "$elemMatch": { "type": "extra credit" } } 
+}).pretty() 
+             
 ```
 
 ### Insert
