@@ -29,6 +29,7 @@ show collections
 db.<collection name>.find({"field1":"value1", "field2":"value2"}).pretty()
 
 # Get just one doc
+db.<collection name>.findOne({})
 
 ### Query + Projection
 ```bash
