@@ -65,6 +65,38 @@ db.zips.find().sort({ "pop": 1 })
 db.zips.find().sort({ "pop": 1, "city":-1 }).limit(10)          
 ```
 
+### Aggregation
+```bash
+# Step 1: Find matching documents
+# Step 2: Only return some of the fields
+db.listingsAndReviews.aggregate([
+                                  { "$match": { "field1": "value1" } },
+                                  { "$project": { "price": 1, "address": 1, "_id": 0 } }
+                                ])
+
+# Grouping content
+db.listingsAndReviews.aggregate([ { "$project": { "address": 1, "_id": 0 }},
+                                  { "$group": { "_id": "$address.country" }}])
+
+# Count in each group
+db.listingsAndReviews.aggregate([
+                                  { "$project": { "address": 1, "_id": 0 }},
+                                  { "$group": { "_id": "$address.country",
+                                                "count": { "$sum": 1 }
+                                              }
+                                  }
+                                ])
+
+# Avg/Min/Max
+db.listingsAndReviews.aggregate([
+                                  { "$project": { "address": 1, "weekly_price":1, "_id": 0 }},
+                                  { "$group": { "_id": "$address.country",
+                                                "avg_weekly_price": { "$avg": "$weekly_price" },
+                                                "min_weekly_price": { "$min": "$weekly_price" },
+                                                "max_weekly_price": { "$max": "$weekly_price" }
+                                              }
+                                  }
+                                ])
 ```
 
 ### Insert
