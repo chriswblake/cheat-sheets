@@ -57,7 +57,14 @@ db.grades.find(
 # Arrays - Show documents wher element in array meets criteria
 db.grades.find({ "scores": { "$elemMatch": { "type": "extra credit" } } 
 }).pretty() 
-             
+
+# Sort
+db.zips.find().sort({ "pop": 1 })
+
+# Limit
+db.zips.find().sort({ "pop": 1, "city":-1 }).limit(10)          
+```
+
 ```
 
 ### Insert
