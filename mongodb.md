@@ -65,7 +65,17 @@ db.grades.find({ "scores": { "$elemMatch": { "type": "extra credit" } }
 db.zips.find().sort({ "pop": 1 })
 
 # Limit
-db.zips.find().sort({ "pop": 1, "city":-1 }).limit(10)          
+db.zips.find().sort({ "pop": 1, "city":-1 }).limit(10)   
+
+# Rename a field
+db.trips.find(
+  { "start station id": 531 },
+  {
+    "_id": 0,
+    "birth-year": "$birth year",
+  }
+)
+
 ```
 
 ### Aggregation
@@ -136,6 +146,17 @@ db.<collection>.updateMany({ "search_field": "search_value" }, { "$inc": { "nume
 
 # Add element to array
 db.<collection>.updateOne({ "search_field": "search_value"}, { "$push": { "my_array": "array_value" }})
+
+# Update if existing, insert if new
+db.<collection>.updateOne({ "sensor": r.sensor,
+                            "date": r.date,
+                            "valcount": { "$lt": 48 } # Will only update the doc if less than 48 values. Otherwise, it wills start a new doc.
+                          },
+                          { "$push": { "readings": { "v": r.value, "t": r.time } }, # Saves sensor data to value/time array
+                            "$inc": { "valcount": 1, "total": r.value } # Increases array length counter by 1
+                          },
+                          { "upsert": true }) 
+
 ```
 
 ### Delete
