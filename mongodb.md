@@ -243,3 +243,11 @@ mongoimport --uri "<Atlas Cluster URI>" --drop=<filename>.json
 ```
 > [--drop] - drops the collection before importing.
 
+### Indexes
+```bash
+# Single key
+db.trips.createIndex({ "birth year": 1 })
+
+# Compound key
+db.trips.createIndex({ "start station id": 1, "birth year": 1 })
+```
