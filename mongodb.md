@@ -1,5 +1,5 @@
 
-### Connect
+# Connect
 ```bash
 # Shell
 mongo "mongodb+srv://unique-db-id.mongodb.net/myFirstDatabase" --username <user>
@@ -38,6 +38,9 @@ db.companies.find({ "relationships.0.person.last_name": "blake" })
 # Regex
 db.companies.find({ "relationships.0.person.first_name": "Mark", "relationships.0.title": { "$regex": "CEO" } })
 > More about [Regex](https://docs.mongodb.com/manual/reference/operator/query/regex/)
+
+# Count
+db.<collection>.find({"field": "value"}).count()
 ```
 
 ### Query + Projection
@@ -149,35 +152,8 @@ db.inspections.deleteMany({ "search_field": 1 })
 db.<collection name>.drop()
 ```
 
-### Summarize
-```bash
-db.<collection>.find({"field": "value"}).count()
-```
 
-### Export Data
-```bash
-# Leave in binary (BSON)
-mongodump --uri "<Atlas Cluster URI>"
-ls dump/
-
-# As plain text (JSON)
-mongoexport --uri "Atlas Cluster URI>" --collection=<collection name> --out=<filename>.json
-less <filename>.json
-```
-
-### Import Data
-```bash
-# As binary data (BSON)
-mongorestore --uri "<Atlas Cluster URI>" --drop <dump folder>
-
-# As plain text (JSON)
-mongoimport --uri "<Atlas Cluster URI>" --drop=<filename>.json
-```
-> [--drop] - drops the collection before importing.
-
-
-## MongoDB - Web Collection Browser
-
+# MongoDB - Web Collection Browser
 ### Query (operators)
 ```json
 // Simple exact search
@@ -243,3 +219,27 @@ mongoimport --uri "<Atlas Cluster URI>" --drop=<filename>.json
   }
 }
 ```
+
+# MongoDB - DB Management
+
+### Export Data
+```bash
+# Leave in binary (BSON)
+mongodump --uri "<Atlas Cluster URI>"
+ls dump/
+
+# As plain text (JSON)
+mongoexport --uri "Atlas Cluster URI>" --collection=<collection name> --out=<filename>.json
+less <filename>.json
+```
+
+### Import Data
+```bash
+# As binary data (BSON)
+mongorestore --uri "<Atlas Cluster URI>" --drop <dump folder>
+
+# As plain text (JSON)
+mongoimport --uri "<Atlas Cluster URI>" --drop=<filename>.json
+```
+> [--drop] - drops the collection before importing.
+
