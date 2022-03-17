@@ -78,6 +78,12 @@ db.trips.find(
 
 ```
 
+### Join / Reference
+```bash
+# Find all stores with one of these ids
+db.stores.find({_id: {$in: ["store1", "store2"]}})
+```
+
 ### Aggregation
 ```bash
 # Step 1: Find matching documents
