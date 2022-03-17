@@ -278,3 +278,99 @@ db.trips.createIndex({ "birth year": 1 })
 # Compound key
 db.trips.createIndex({ "start station id": 1, "birth year": 1 })
 ```
+
+### Schema
+[Valid BSON Types](https://docs.mongodb.com/manual/reference/bson-types/)
+
+`.\validate_m320.exe example --file answer_schema.json --verbose`
+
+```json
+# Example (answer_schema.json)
+{
+  "_id": "<objectId>",
+  "title": "<string>",
+  "artist": "<string>",
+  "room": "<string>",
+  "spot": "<string>",
+  "on_display": "<bool>",
+  "in_house": "<bool>",
+  "events": [{
+    "k": "<string>",
+    "v": "<date>"
+  }]
+}
+```
+
+### Attribute Pattern
+Convert the extra fields of a collection into an "additional_specs" array. This new array enables easier indexing on the fields that will be unique to several documents.
+
+```json
+// From this
+{
+  "manufacture": "China",
+  "brand": "MongoDB",
+  "sub_brand": "University",
+  ...
+  "input": "5V/1300 mA",
+  "output": "5V/1A",
+  "capacity": "4200mAh",
+}
+// To this
+{
+  "manufacture": "China",
+  "brand": "MongoDB",
+  "sub_brand": "University",
+  "additional_specs": [
+    {"k": "input", "v": "5V/1300 mA"},
+    {"k": "output", "v": "5V/1A"},
+    {"k": "capacity", "v": "4200", "u": "mAH"},
+  ]
+}
+```
+> Alternately, look into the [wildcard index](https://docs.mongodb.com/manual/core/index-wildcard/).
+```bash
+# To create the index
+db.products.createIndex({"additional_specs.k":1, "additional_specs.v":1})
+
+# To query using that index
+dp.products.find({"additional_specs":{"$elemMatch":{"k":"capacity", "v":"4200"}}})
+```
+
+
+### Graphs
+```bash
+# Find the chain of parents
+db.categories.aggregate([
+    { $graphLookup: {
+        from: 'categories',
+        startWith: '$name',
+        connectFromField: 'parent',
+        connectToField: 'name',
+        as: 'ancestors'
+      }
+    }
+])
+
+# Update all children to have a new parent
+db.categories.updateMany(
+  {parent: N},
+  {$set: { parent: P }}
+)
+
+```
+
+Materialized Path Approach
+```json
+{
+  "name": "Books",
+  "ancestors": ".Swag.Office"
+}
+```
+
+```bash
+# Immediate ancestor of Y
+db.categories.find({ancestors: "/\.Y$/"})
+
+# If it descends from X and Z
+db.categories.find({ancestors: "/^\.X.*Y/i"})
+```
