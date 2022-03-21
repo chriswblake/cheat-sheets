@@ -179,6 +179,15 @@ db.inspections.deleteMany({ "search_field": 1 })
 db.<collection name>.drop()
 ```
 
+### Bulk Write
+```bash
+db.stock.bulkWrite([
+  {updateOne: {"filter": {"item":"apple"},  "update": {"$inc":{"quantity":50 }}}},
+  {updateOne: {"filter": {"item":"butter"}, "update": {"$inc":{"quantity":5 }}}},
+  {updateOne: {"filter": {"item":"bread"},  "update": {"$inc":{"quantity":30 }}}},
+  {updateOne: {"filter": {"item":"celery"}, "update": {"$inc":{"quantity":40 }}}}
+], {ordered: false}) # optionally, specify that the operations are sequentially dependent and processed serially (true, default) or independent of each other and processed parallel (false)
+```
 
 # MongoDB - Web Collection Browser
 ### Query (operators)
