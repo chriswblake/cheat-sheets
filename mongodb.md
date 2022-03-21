@@ -286,6 +286,9 @@ db.trips.createIndex({ "birth year": 1 })
 
 # Compound key
 db.trips.createIndex({ "start station id": 1, "birth year": 1 })
+
+# Unique
+db.shipments.createIndex({"truck_id":1}, {"unique": true})
 ```
 
 ### Schema
