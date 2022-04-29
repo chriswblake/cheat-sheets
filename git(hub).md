@@ -12,6 +12,26 @@ git config user.name "Christopher W. Blake"
 git config user.email "chriswblake@gmail.com"
 ```
 
+### Permanent delete file in Git Repository
+```
+git filter-repo --path-glob '*.mp4' --invert-paths --force
+git push origin --force --all
+```
+
+### Remove local copies of removed remote branches (origin/*)
+```
+git fetch --prune
+```
+
+### Create blank branch
+```
+git checkout --orphan <branch name>
+```
+
+### Ignore changes to tracked file
+```
+git update-index --skip-worktree <file>
+```
 
 ### Logs - Audit Org
 ```
