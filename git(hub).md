@@ -12,6 +12,25 @@ git config user.name "Christopher W. Blake"
 git config user.email "chriswblake@gmail.com"
 ```
 
+### Global gitignore (macos)
+```
+git config --global core.excludesfile ~/.gitignore
+```
+
+```
+# Folder view configuration files
+.DS_Store
+Desktop.ini
+
+# Thumbnail cache files
+._*
+Thumbs.db
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+```
+
 ### Permanent delete file in Git Repository
 ```
 git filter-repo --path-glob '*.mp4' --invert-paths --force
