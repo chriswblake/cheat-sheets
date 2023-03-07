@@ -37,6 +37,13 @@ git filter-repo --path-glob '*.mp4' --invert-paths --force
 git push origin --force --all
 ```
 
+```
+python git-filter-repo --path-glob '*.secrets' --invert-paths --force
+python git-filter-repo
+```
+> Reference: This is a python tool. If not installed in $PATH, it has to be called directuly using python.
+https://github.com/newren/git-filter-repo
+
 ### Remove local copies of removed remote branches (origin/*)
 ```
 git fetch --prune
