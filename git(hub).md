@@ -69,3 +69,28 @@ repo:my-org/our-repo
 ```
 
 Reference: https://docs.github.com/en/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/reviewing-the-audit-log-for-your-organization
+
+### Git LFS - Setup and track
+
+1. Install on machine (if needed)
+brew install git-lfs
+1. Install for user (if needed)
+git lfs install
+1. Track a file type with LFS.
+git lfs track "*.psd"
+1. Ensure the .gitattributes file is tracked (for future clones).
+git add .gitattributes
+
+Reference: https://git-lfs.com/
+
+### Git LFS  - Migrate existing repo
+
+git lfs migrate import --include="*.zip"
+git lfs migrate import --include="*.zip" --include-ref=refs/heads/master --include-ref=refs/heads/my-feature
+
+git push --force
+
+
+Reference: https://github.com/git-lfs/git-lfs/wiki/Tutorial#migrating-existing-repository-data-to-lfs
+
+References: https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-migrate.adoc?utm_source=gitlfs_site&utm_medium=doc_man_migrate_link&utm_campaign=gitlfs
