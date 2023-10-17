@@ -54,6 +54,11 @@ git fetch --prune
 git checkout --orphan <branch name>
 ```
 
+### Copy all branches from one remote to anothe (origin to target)
+```
+git push target 'refs/remotes/origin/*:refs/heads/*'
+```
+
 ### Ignore changes to tracked file
 ```
 git update-index --skip-worktree <file>
@@ -94,3 +99,12 @@ git push --force
 Reference: https://github.com/git-lfs/git-lfs/wiki/Tutorial#migrating-existing-repository-data-to-lfs
 
 References: https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-migrate.adoc?utm_source=gitlfs_site&utm_medium=doc_man_migrate_link&utm_campaign=gitlfs
+
+
+### Test github actions locally
+
+act pull_request --secret-file my.secrets -W .github/workflows/workflow-name.yml
+
+
+act pull_request -W .github/workflows/docker-build-publish-cataloging-service.yml
+act pull_request -W .github/workflows/docker-build-publish-cataloging-service.yml --secret-file act-workfow.secrets
