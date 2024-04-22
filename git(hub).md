@@ -120,10 +120,42 @@ Reference: https://github.com/git-lfs/git-lfs/wiki/Tutorial#migrating-existing-r
 References: https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-migrate.adoc?utm_source=gitlfs_site&utm_medium=doc_man_migrate_link&utm_campaign=gitlfs
 
 
-### Test github actions locally
+### Run github actions locally (with ACT)
 
-act pull_request --secret-file my.secrets -W .github/workflows/workflow-name.yml
+Trigger types
+```bash
 
+act pull_request -W .github/workflows/workflow-name.yml --secret-file .secrets.act
 
-act pull_request -W .github/workflows/docker-build-publish-cataloging-service.yml
-act pull_request -W .github/workflows/docker-build-publish-cataloging-service.yml --secret-file act-workfow.secrets
+act tags -W .github/workflows/workflow-name.yml --secret-file .secrets.act 
+
+act repository_dispatch -W .github/workflows/workflow-name.yml  --secret-file .secrets.act --eventpath webhook_payload.json -p=false 
+
+```
+
+Examples
+```
+act repository_dispatch -W .github/workflows/send-notification.yml --actor chriswblake --secret-file .secrets.act --eventpath webhook_payload.json -p=false 
+act pull_request -W .github/workflows/build-and-publish.yml --secret-file .secrets.act 
+```
+
+Pick user
+```
+--actor chriswblake
+```
+Add Payload
+```
+--eventpath payload.json
+```
+Set Environment Variables
+```
+--env-file .env.local
+```
+Set Secrets
+```
+--secret-file .secrets.act
+```
+Disables force pull of images
+```
+-p=false
+```
