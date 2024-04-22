@@ -1,4 +1,23 @@
 
+### Merge 2 repositories
+
+```bash
+# Go to repo that will receive merge
+cd path/to/repo1
+
+# Add remote to repo to be pulled/merged
+git remote add repo2 /path/to/repo2
+git fetch repo2 --tags
+
+# merge repo2 into repo1. Repeat for each branch
+git merge --allow-unrelated-histories repo2/master
+git merge --allow-unrelated-histories repo2/main
+git merge --allow-unrelated-histories repo2/develop
+
+# Remove reference to the merged repo. Delete it once confirmed.
+git remote remove project-a
+```
+
 
 ### Username/Email
 ```bash
