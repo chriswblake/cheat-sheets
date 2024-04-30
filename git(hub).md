@@ -5,6 +5,11 @@ git fetch origin
 git branch -u origin/main main
 git remote set-head origin -a
 
+### Specify different author during commit
+
+git commit --author="First Last <first.last@example.com>" --date "2021-01-18" -m "First person wrote this code. Christopher is committing it with a rough estimate of creation date."
+
+
 
 ### Merge 2 repositories
 
