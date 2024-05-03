@@ -171,3 +171,13 @@ Disables force pull of images
 ```
 -p=false
 ```
+
+### Show local context and base branch
+```
+steps:
+- name: Show context
+    run: echo "${{ toJSON(github) }}"
+
+- name: Show base branch
+    run: echo "${{ github.event.base_ref }}"
+```
