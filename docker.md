@@ -49,3 +49,23 @@ Troubleshooting
 # Error: error while loading shared libraries: libz.so.1: failed to map segment from shared object
 sudo mount /tmp -o remount,exec
 ```
+
+
+Docker Contexts
+https://docs.docker.com/engine/reference/commandline/context/
+
+```bash
+# Create a context pointed at a remote server
+docker context create remote-host --docker host=tcp:///my-remote-host:2735,key=key-file
+```
+
+```bash
+# Change host URL
+docker context update --docker "host=tcp://192.168.0.0,key=key-file" remote-host
+```
+> Note: `key-file` is the name of the file located in the `~/.ssh/` folder.
+
+```bash
+# Change context description
+docker context update --description "description of context" remote-host
+```
