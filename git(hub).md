@@ -95,17 +95,6 @@ git push target 'refs/remotes/origin/*:refs/heads/*'
 git update-index --skip-worktree <file>
 ```
 
-### Logs - Audit Org
-```
-# By User
-actor:chriswblake
-
-# By Repo
-repo:my-org/our-repo
-```
-
-Reference: https://docs.github.com/en/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/reviewing-the-audit-log-for-your-organization
-
 ### Git LFS - Setup and track
 
 1. Install on machine (if needed)
