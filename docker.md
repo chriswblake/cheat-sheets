@@ -12,6 +12,11 @@ sudo docker restart mycontainer
 sudo docker inspect mycontainer
 ```
 
+Pull and specify architecture
+```bash
+sudo docker pull --platform linux/amd64 mycontainer
+```
+
 Remove
 ```bash
 sudo docker contaienr ls
