@@ -1,0 +1,1 @@
+Use conventional commits with prefix "docs(<filename>)", without file extension.
