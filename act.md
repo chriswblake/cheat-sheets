@@ -139,3 +139,10 @@ act --action-offline-mode
 ### Change user
 ```
 act --actor chriswblake
+```
+
+### Supress debug output
+
+```
+act | grep -v '::'
+```
