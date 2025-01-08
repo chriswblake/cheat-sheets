@@ -27,6 +27,27 @@ Add these to to the project's VS Code settings, typically at `.vscode/settings.j
 
 Place these entries in `.github/code-style.md`
 
+### Documentation
+
+```
+Prefer tables over lists. Avoid long paragraphs.
+Always add an accessibility description to images.
+Consider dark mode, light mode, and color blindness when using colors.
+Always use active voice for documentation.
+```
+
+### Coding (general)
+
+```
+Always add natural language comments.
+```
+
+### UI/UX
+
+```
+Always use the GitHub Primer design system for UI changes.
+```
+
 ### Javascript
 
 ```
@@ -49,6 +70,7 @@ At the end, in a comment, sometimes include advice about a similar topic to prom
 
 ```
 At the end, in a comment, always add a github related joke.
+If after 9pm, remind me to drink more coffee or consider going to bed. (joking)
 ```
 
 ## Commit Message Generation
