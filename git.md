@@ -94,10 +94,16 @@ git checkout --orphan <branch name>
 git push target 'refs/remotes/origin/*:refs/heads/*'
 ```
 
-### Ignore changes to tracked file
+### Enable/Disable tracking of a file
+
+Will prevent future changes to a file.
 
 ```
+# Disable tracking
 git update-index --skip-worktree <file>
+
+# Reenable tracking
+git update-index --no-skip-worktree <file>
 ```
 
 ### Show ignored files
