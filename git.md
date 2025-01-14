@@ -95,6 +95,12 @@ git push target 'refs/remotes/origin/*:refs/heads/*'
 git update-index --skip-worktree <file>
 ```
 
+### Show ignored files
+
+```
+git ls-files -v . | grep ^S
+```
+
 ### Git LFS - Setup and track
 
 1. Install on machine (if needed)
