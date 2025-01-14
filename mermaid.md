@@ -1,14 +1,15 @@
-
 ### Simple Example
+
 ```mermaid
   graph TD;
       A-->B;
       A-->C;
       B-->F;
       C-->D;
-``` 
+```
 
-### Sequence Diagram  
+### Sequence Diagram
+
 ```mermaid
 sequenceDiagram
     participant dotcom
@@ -23,6 +24,7 @@ sequenceDiagram
 ```
 
 ### Links in chart
+
 ```mermaid
 flowchart LR;
     A-->B;
@@ -35,6 +37,7 @@ flowchart LR;
 ```
 
 ### Pseudo-Fishbone
+
 ```mermaid
 flowchart LR
 
@@ -60,7 +63,7 @@ flowchart LR
         data_used_up --> internet_loss
         out_of_range --> weak_connection
     end
-    subgraph Router 
+    subgraph Router
         invalid_sim_config --> internet_loss
         https_enabled --> internet_loss
         invalid_dhcp_config --> internet_loss
@@ -84,6 +87,7 @@ flowchart LR
 ```
 
 ### Gantt
+
 ```mermaid
 gantt
 dateFormat  YYYY-MM-DD
@@ -98,6 +102,7 @@ Future task2              :         des4, after des3, 5d
 ```
 
 ### Expanding entries
+
 ```mermaid
 sequenceDiagram
     participant Alice
@@ -110,5 +115,6 @@ sequenceDiagram
 ```
 
 ## References
+
 - Mermaid Syntax - https://mermaid-js.github.io/mermaid/
-- GitHub Blog - Mermaid Support  - https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/
+- GitHub Blog - Mermaid Support - https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/

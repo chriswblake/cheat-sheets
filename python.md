@@ -1,5 +1,5 @@
-
 ## Testing
+
 ```python
 # Basic Modules
 import unittest
@@ -46,9 +46,8 @@ class StageTest(unittest.TestCase):
                 self.assertAlmostEqual(calculated_value[temp_f], expected_value, delta = allowed_error)
 ```
 
-
-
 ## Typing
+
 ```python
 # Dictionary
 from typing import Dict
@@ -65,6 +64,7 @@ def add_data(self, date_time:Union[datetime,int], speed_rpm:float):
 ```
 
 ## Random - Choice
+
 ```python
 import random
 cities = ["Atlanta", "New York", "Miami", "Chicago"]
@@ -73,5 +73,6 @@ destination = random.choice([c for c in cities if c != source])
 ```
 
 ## References
+
 - Fake data - https://pypi.org/project/Faker/
 - typing - https://docs.python.org/3/library/typing.html

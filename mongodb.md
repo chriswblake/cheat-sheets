@@ -1,5 +1,5 @@
-
 # Connect
+
 ```bash
 # Shell
 mongo "mongodb+srv://unique-db-id.mongodb.net/myFirstDatabase" --username <user>
@@ -8,12 +8,10 @@ mongo "mongodb+srv://unique-db-id.mongodb.net/myFirstDatabase" --username <user>
 mongodb+srv://user:pass@unique-db-id.mongodb.net/myFirstDatabase
 ```
 
-
-
-
 # MongoDB - Shell commands
 
 ### Find and Open DB
+
 ```bash
 # List databases
 show dbs
@@ -24,6 +22,7 @@ show collections
 ```
 
 ### Query
+
 ```bash
 # Search docs
 db.<collection name>.find({"field1":"value1", "field2":"value2"}).pretty()
@@ -44,6 +43,7 @@ db.<collection>.find({"field": "value"}).count()
 ```
 
 ### Query + Projection
+
 ```bash
 # Show only some fields in results (1-show, 0-hide)
 db.<collection name>.find(
@@ -58,14 +58,14 @@ db.grades.find(
 }).pretty()
 
 # Arrays - Show documents wher element in array meets criteria
-db.grades.find({ "scores": { "$elemMatch": { "type": "extra credit" } } 
-}).pretty() 
+db.grades.find({ "scores": { "$elemMatch": { "type": "extra credit" } }
+}).pretty()
 
 # Sort
 db.zips.find().sort({ "pop": 1 })
 
 # Limit
-db.zips.find().sort({ "pop": 1, "city":-1 }).limit(10)   
+db.zips.find().sort({ "pop": 1, "city":-1 }).limit(10)
 
 # Rename a field
 db.trips.find(
@@ -79,12 +79,14 @@ db.trips.find(
 ```
 
 ### Join / Reference
+
 ```bash
 # Find all stores with one of these ids
 db.stores.find({_id: {$in: ["store1", "store2"]}})
 ```
 
 ### Aggregation
+
 ```bash
 # Step 1: Find matching documents
 # Step 2: Only return some of the fields
@@ -119,6 +121,7 @@ db.listingsAndReviews.aggregate([
 ```
 
 ### Insert
+
 ```bash
 # Insert One Doc
 db.inspections.insert({
@@ -138,6 +141,7 @@ db.<collection>.insert([{ "_id": 1, "test": 1 }, { "_id": 1, "test": 2 }, { "_id
 ```
 
 ### Modify / Update
+
 [MQL Update Operators](https://docs.mongodb.com/manual/reference/operator/update/#id1)
 
 ```bash
@@ -161,11 +165,12 @@ db.<collection>.updateOne({ "sensor": r.sensor,
                           { "$push": { "readings": { "v": r.value, "t": r.time } }, # Saves sensor data to value/time array
                             "$inc": { "valcount": 1, "total": r.value } # Increases array length counter by 1
                           },
-                          { "upsert": true }) 
+                          { "upsert": true })
 
 ```
 
 ### Delete
+
 ```bash
 
 # Field
@@ -180,6 +185,7 @@ db.<collection name>.drop()
 ```
 
 ### Bulk Write
+
 ```bash
 db.stock.bulkWrite([
   {updateOne: {"filter": {"item":"apple"},  "update": {"$inc":{"quantity":50 }}}},
@@ -190,7 +196,9 @@ db.stock.bulkWrite([
 ```
 
 # MongoDB - Web Collection Browser
+
 ### Query (operators)
+
 ```json
 // Simple exact search
 {"state": "NY", "city": "ALBANY"}
@@ -241,13 +249,14 @@ db.stock.bulkWrite([
 ```
 
 ### Query (using expressions)
+
 ```json
 
 // Two fields have the same value
 { "$expr": { "$eq": [ "$end station id", "$start station id"] } }
 
 // Combined comparisons
-{ "$expr": { 
+{ "$expr": {
     "$and": [
       {"$eq": [ "$end station id", "$start station id"]},
       {"$lte": ["$tripduration", 1000]}
@@ -259,6 +268,7 @@ db.stock.bulkWrite([
 # MongoDB - DB Management
 
 ### Export Data
+
 ```bash
 # Leave in binary (BSON)
 mongodump --uri "<Atlas Cluster URI>"
@@ -270,6 +280,7 @@ less <filename>.json
 ```
 
 ### Import Data
+
 ```bash
 # As binary data (BSON)
 mongorestore --uri "<Atlas Cluster URI>" --drop <dump folder>
@@ -277,9 +288,11 @@ mongorestore --uri "<Atlas Cluster URI>" --drop <dump folder>
 # As plain text (JSON)
 mongoimport --uri "<Atlas Cluster URI>" --drop=<filename>.json
 ```
+
 > [--drop] - drops the collection before importing.
 
 ### Indexes
+
 ```bash
 # Single key
 db.trips.createIndex({ "birth year": 1 })
@@ -292,6 +305,7 @@ db.shipments.createIndex({"truck_id":1}, {"unique": true})
 ```
 
 ### Schema
+
 [Valid BSON Types](https://docs.mongodb.com/manual/reference/bson-types/)
 
 `.\validate_m320.exe example --file answer_schema.json --verbose`
@@ -314,6 +328,7 @@ db.shipments.createIndex({"truck_id":1}, {"unique": true})
 ```
 
 ### Attribute Pattern
+
 Convert the extra fields of a collection into an "additional_specs" array. This new array enables easier indexing on the fields that will be unique to several documents.
 
 ```json
@@ -339,7 +354,9 @@ Convert the extra fields of a collection into an "additional_specs" array. This 
   ]
 }
 ```
+
 > Alternately, look into the [wildcard index](https://docs.mongodb.com/manual/core/index-wildcard/).
+
 ```bash
 # To create the index
 db.products.createIndex({"additional_specs.k":1, "additional_specs.v":1})
@@ -348,8 +365,8 @@ db.products.createIndex({"additional_specs.k":1, "additional_specs.v":1})
 dp.products.find({"additional_specs":{"$elemMatch":{"k":"capacity", "v":"4200"}}})
 ```
 
-
 ### Graphs
+
 ```bash
 # Find the chain of parents
 db.categories.aggregate([
@@ -372,6 +389,7 @@ db.categories.updateMany(
 ```
 
 Materialized Path Approach
+
 ```json
 {
   "name": "Books",
