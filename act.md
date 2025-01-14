@@ -107,9 +107,13 @@ However, there are some advanced workflows that require the large image.
 
 ```bash
 # Large
-docker pull catthehacker/ubuntu:full-latest
+docker pull act -P ubuntu-latest=-self-hosted
 # Medium
-docker pullcatthehacker/ubuntu:act-latest
+docker pull catthehacker/ubuntu:act-latest
+```
+
+```bash
+act -P ubuntu-latest=catthehacker/ubuntu:full-latest
 ```
 
 ### Config file location
