@@ -1,5 +1,11 @@
 # Video
 
+## Convert a video to gif
+
+```bash
+ffmpeg -i input.mp4 output.gif
+```
+
 ## Convert a video from dark mode to light mode
 
 > [!IMPORTANT]
@@ -40,12 +46,24 @@ echo $newCommand >> ~/.zshrc
 
 ### Usage
 
+#### Convert dark-mode video to light-mode.
+
 ```bash
 convert-to-light-mode input.mp4 output.mp4
 ```
 
+or without output filename
+
+```
+convert-to-light-mode my-video.mp4
+```
+
+> Result: my-video-light-mode.mp4
+
+#### Convert video to light-mode and export as `.gif` image
+
 ```bash
-convert-to-light-mode input.mp4
+convert-to-light-mode input.mp4 output.gif
 ```
 
 >
