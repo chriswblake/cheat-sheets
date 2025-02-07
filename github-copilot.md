@@ -42,6 +42,10 @@ Always use active voice for documentation.
 Always add natural language comments.
 ```
 
+```
+Update unit tests and end to end tests as needed.
+```
+
 ### UI/UX
 
 ```
