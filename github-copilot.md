@@ -36,6 +36,13 @@ Consider dark mode, light mode, and color blindness when using colors.
 Always use active voice for documentation.
 ```
 
+
+### Repeatability
+```
+Keep a a change log file (changelog.md) for tracking the prompts used while developing this project.
+Each entry should contain a timestamp, the accepted prompt, and a few bullet points describing the technical changes.
+```
+
 ### Coding (general)
 
 ```
