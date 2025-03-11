@@ -53,11 +53,26 @@ Always add natural language comments.
 Update unit tests and end to end tests as needed.
 ```
 
+```
+If I ask for a big task that would require multiple mixed goals and may be difficult to debug simultaneously, solve them one at a time. If needed ask me for feedback about the order to solve them.
+```
+
 ### UI/UX
 
 ```
 Always use the GitHub Primer design system for UI changes.
 ```
+
+```
+I am not a good UI designer. Always make it pretty and accessible.
+```
+
+> 🤖 **Copilot Prompt**
+> ```
+> hello world
+> ```
+
+> 🤖 **Copilot:** `hello world`
 
 ### Javascript
 
