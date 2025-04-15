@@ -162,3 +162,11 @@ act --actor chriswblake
 ```
 act | grep -v '::'
 ```
+
+### Delete local copies of actions
+
+They are located in this folder. Simply delete one and it will be redownloaded on next call.
+
+```
+/home/vscode/.cache/act/
+```
