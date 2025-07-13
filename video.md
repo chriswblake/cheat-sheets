@@ -1,5 +1,14 @@
 # Video
 
+## Scale to 1280px width
+```bash
+ffmpeg -i input.mp4 -vf scale=1280:-1 output2.mp4
+```
+
+```bash
+ffmpeg -i input.mp4 -vf scale=1280:720 output.mp4
+```
+
 ## Convert a video to gif
 
 ```bash
