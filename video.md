@@ -9,10 +9,19 @@ ffmpeg -i input.mp4 -vf scale=1280:-1 output2.mp4
 ffmpeg -i input.mp4 -vf scale=1280:720 output.mp4
 ```
 
-## Convert a video to gif
+## Convert a video to gif / webp for animation
 
 ```bash
 ffmpeg -i input.mp4 output.gif
+```
+
+```bash
+ffmpeg -i input.mp4 output.webp
+```
+
+Small file size
+```bash
+ffmpeg -y -i input.mp4 -loop 0 -filter_complex "fps=5,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=32[p];[s1][p]paletteuse=dither=bayer" input.webp
 ```
 
 ## Convert a video from dark mode to light mode
