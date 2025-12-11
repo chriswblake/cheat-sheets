@@ -58,3 +58,33 @@ steps:
    sudo reboot
    ```
 1. Confirm the runner is idle on GitHub.
+
+### Delete all workflow runs
+
+Note: Requires GitHub CLI installed.
+
+```bash
+# Select the target repo
+REPO="owner/repo-name"
+
+# Get all workflow run IDs and store in array
+WORKFLOW_RUN_IDS=()
+while IFS= read -r id; do
+  WORKFLOW_RUN_IDS+=("$id")
+done < <(
+  gh api \
+    --paginate \
+    "repos/$REPO/actions/runs" \
+    --jq '.workflow_runs[].id'
+)
+WORKFLOW_RUN_COUNT=${#WORKFLOW_RUN_IDS[@]}
+
+# Loop through each and send API call to delete it
+echo "Deleting $WORKFLOW_RUN_COUNT workflow runs."
+COUNTER=0
+for id in "${WORKFLOW_RUN_IDS[@]}"; do
+  COUNTER=$((COUNTER + 1))
+  echo "$COUNTER/$WORKFLOW_RUN_COUNT - Deleting workflow run with ID: $id"
+  gh api -X DELETE "repos/$REPO/actions/runs/$id?cleanup=true"
+done
+```
