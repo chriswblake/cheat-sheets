@@ -45,8 +45,8 @@ ffmpeg -ss 0 -i input.mp4 -t 5 -c copy output.mp4
 
 ```bash
 # Variables
-INPUT="gameplay-blur.mp4"  # input file
-OUTPUT="gameplay-blur-out.mp4" # output file
+INPUT="input.mp4"  # input file
+OUTPUT="output.mp4" # output file
 
 START="30"        # blur start time
 END="36"         # blur end time
