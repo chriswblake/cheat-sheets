@@ -41,10 +41,6 @@ ffmpeg -i input.mp4 -vf "negate,hue=h=180,eq=contrast=1.2:saturation=1.1" output
 ffmpeg -ss 0 -i input.mp4 -t 5 -c copy output.mp4
 ```
 
-ffmpeg -ss 0 -i gameplay.mp4 -t 34 -c copy gameplay-short.mp4
-
-
-
 ## Blur part of a video
 
 ```bash
